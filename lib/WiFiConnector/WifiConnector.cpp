@@ -1,7 +1,7 @@
+#include <WiFiConnector.h>
 #include <WiFi.h>
-#include "WiFiConnector.h"
 
-void WiFiConnectorClass::begin() {
+void WiFiConnectorClass::init() {
   Serial.println();
   Serial.print("WiFi setup connection: ");
   Serial.println(WIFI_SSID);
@@ -19,28 +19,30 @@ void WiFiConnectorClass::begin() {
   Serial.println(WiFi.localIP());
 }
 
-void WiFiConnectorClass::begin(ScreenClass Screen) {
+void WiFiConnectorClass::init(ScreenClass* screen) {
+  this->screen = screen;
   unsigned long start = millis();
 
-  Screen.clear();
-  Screen.writeln(TFT_CYAN, "WiFi connecting to...");
-  Screen.writeln(TFT_BLUE, WIFI_SSID);
-  Screen.writeln();
+  screen->clear();
+  screen->writeln(TFT_CYAN, "WiFi connecting to...");
+  screen->writeln(TFT_BLUE, WIFI_SSID);
+  screen->writeln();
 
   WiFi.begin(WIFI_SSID, WIFI_PASS);
 
   while (WiFi.status() != WL_CONNECTED) {
     delay(250);
-    Screen.write(TFT_ORANGE, '=');
+    screen->write(TFT_ORANGE, '=');
   }
 
-  Screen.writeln();
-  Screen.writeln();
-  Screen.writeln(TFT_CYAN, "WiFi connected...");
-  Screen.writeln(TFT_BLUE, "IP " + WiFi.localIP().toString());
-  Screen.writeln();
-  Screen.writeln(TFT_CYAN, "Init time (ms)...");
-  Screen.writeln(TFT_BLUE, String(((millis() - start))) + "ms");
+  screen->writeln();
+  screen->writeln();
+  screen->writeln(TFT_CYAN, "WiFi connected...");
+  screen->writeln(TFT_BLUE, "IP " + WiFi.localIP().toString());
+  screen->writeln();
+  screen->writeln(TFT_CYAN, "Init time (ms)...");
+  screen->writeln(TFT_BLUE, String(((millis() - start))) + "ms");
+  delay(500);
 }
 
 void WiFiConnectorClass::end() {

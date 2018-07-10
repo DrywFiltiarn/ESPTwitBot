@@ -5,5 +5,6 @@
 .vscode/launch.json
 .vscode
 .travis.yml
+lib/readme.txt
 platformio.ini
 test.sh

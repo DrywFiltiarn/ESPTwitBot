@@ -12,9 +12,12 @@
 
 class WiFiConnectorClass {
   public:
-    void begin();
-    void begin(ScreenClass Screen);
+    void init();
+    void init(ScreenClass* screen);
     void end();
+
+  private:
+    ScreenClass* screen;
 };
 
 extern WiFiConnectorClass WiFiConnector;

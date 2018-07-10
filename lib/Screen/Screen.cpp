@@ -1,28 +1,28 @@
+#include <Screen.h>
 #include <TFT_eSPI.h>
-#include "Screen.h"
 
 void ScreenClass::init() {
-  this->tft = TFT_eSPI();
-  this->tft.init();
-  this->tft.setRotation(1);
+  tft = TFT_eSPI();
+  tft.init();
+  tft.setRotation(1);
 }
 
 void ScreenClass::clear() {
-  this->tft.fillScreen(TFT_BLACK);
+  tft.fillScreen(TFT_BLACK);
+  tft.setCursor(0, 0);
 }
 
 void ScreenClass::write(int color, char chr) {
-  this->tft.setTextColor(color);
-  this->tft.write(chr);
+  tft.setTextColor(color);
+  tft.write(chr);
 }
 
 void ScreenClass::writeln() {
-  this->tft.println();
+  tft.println();
 }
 void ScreenClass::writeln(int color, String str) {
-  this->tft.setTextColor(color);
-  this->tft.println(str);
+  tft.setTextColor(color);
+  tft.println(str);
 }
-
 
 ScreenClass Screen;
