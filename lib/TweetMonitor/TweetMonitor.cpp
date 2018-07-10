@@ -71,7 +71,7 @@ void TweetMonitorClass::watchTweets() {
 		String command = "/1.1/search/tweets.json?q=" + query + "&result_type=recent";
 		String response = request(command);
 
-		// TODO processing
+		// TODO: process response
 
 		screen->writeln(TFT_BLUE, "Loaded tweets in: " + String(millis() - start) + "ms");
 		lastUpdate = millis();
